@@ -1,0 +1,133 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-inverse">
+ 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+     
+      <li class="nav-item">
+          <a class="nav-link"routerLink="/register">Register</a>
+        </li>
+    </ul>
+    
+  </div>
+</nav>
+   -->
+
+
+<!-- <div class="tab-content">
+    <div class="container" aria-labelledby="tab-login">
+      <h2>Login</h2><br>
+       <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+         <div >
+            <div>
+              <label for="f_name"><span style="color:red;" >*</span> User Name:</label>
+              <input [ngClass]="{'is-invalid':submited 
+                     && loginformcontrol.username.errors}" 
+                     type="text" name="f_name" placeholder="Username" 
+                     class="form-control" 
+                     formControlName="username">
+             </div>
+
+             <div *ngIf="(loginformcontrol.username.touched) 
+                     && loginformcontrol.username.errors">
+                <small style="color: red;">
+                    User name or Email is required
+               </small>
+             </div>
+     
+             <div>
+             <label for="l_name"><span style="color:red;" >*</span>Password</label>
+             <input [ngClass]="{'is-invalid':submited 
+                    && loginformcontrol.password.errors}"
+                    type="password" name="l_name" 
+                    placeholder="password" class="form-control" 
+                    formControlName="password">
+             </div>
+             <div *ngIf="(loginformcontrol.password.touched) && 
+                  loginformcontrol.password.errors">
+                  <small style="color: red;">
+                   Password is required
+                  </small>
+             </div><br>
+
+             <button class="btn btn-primary btnLoginRegister" type="submit">Login</button>&nbsp;
+             
+        
+            
+            
+         
+         </div>
+       </form>
+    </div>
+
+
+
+
+    <div *ngIf="loader" class="cssload-container">
+      <div class="cssload-speeding-wheel"></div>
+  </div> -->
+
+
+  <div class="wrapper  " >
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div >
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4uIdFdpO4f6e2_9Chh912ee1hRzk03oGIrnNLYr4ubRmsvgI9QCwGIszZPejiXX6zAYY&usqp=CAU"
+          id="icon" alt="User Icon" style="width: 250px;" />
+      </div>
+  
+      <!-- Login Form -->
+      
+      <form [formGroup]="loginform" (ngSubmit)="onSubmit()" novalidate style="margin: 10px;">
+        <h3>Login Form</h3>
+        <br>
+        <input [class.is-invalid]="
+          f['username'].invalid && f['username'].touched
+        " type="text" id="login" class=" second" name="login" placeholder="User Name" formControlName="username">
+  
+        <span style="color: red;   text-align: left;" *ngIf="f['username'].invalid && f['username'].touched">
+          Username is required
+        </span>
+
+        <input type="password" style="margin-top: 25px;" id="password" class=" third" name="login" placeholder="Password"
+          formControlName="password">
+        <span style=" text-align: left; color: red;" *ngIf="f['password'].invalid && f['password'].touched">
+          Password is required
+        </span>
+        <!-- <br><br><select  style="font-weight: lighter;border: none;font-size: 2rem;" class="select  fourth">
+             
+              <option value="0" selected disabled>Your Role</option>
+              <option value="Patient">Patient</option>
+              <option value="Provider">Provider</option>
+              
+            </select><br> -->
+        <br>
+        <br>
+        <!-- <input type="submit" class=" fourth" value="Log In"> -->
+        <button type="submit" class="btn btn-primary  ">Login </button>
+&nbsp;
+        <button style="margin-left:5px ;"
+         class="btn btn-secondary  " routerLink="/register">Register </button>
+        
+        <!-- <br><button style="font-size: 1.4rem; " type="button" (click)="onSubmit(log)" class="btn btn-primary">Log IN</button> -->
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter" >
+        <h5>Forgot Password?? <a style="
+          font-size: 1rem; color: blue;" routerLink="/forget-password">Reset here</a></h5>
+      
+              
+      </div>
+  
+    </div>
+  </div>

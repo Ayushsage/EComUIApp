@@ -1,0 +1,293 @@
+<!-- <div class="container">
+  <div class="  row">
+
+    <div class="col-md-4">
+      <div class="dashboard-header">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+          <a class="navbar-brand" href="#"> Dashboard</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto navbar-right-top">
+
+              <li class="nav-item dropdown notification">
+                <a class="nav-link nav-icons" routerLink="/cart" id="navbarDropdownMenuLink1" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-cart-shopping"></i> <span
+                    class="indicator"></span></a>
+
+              </li>
+
+              <li class="nav-item dropdown nav-user">
+                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false"><img
+                    src="https://img.icons8.com/dusk/100/000000/user-female-circle.png" alt=""
+                    class="user-avatar-md rounded-circle"></a>
+                <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                  aria-labelledby="navbarDropdownMenuLink2">
+                  <div class="nav-user-info">
+                    <h5 class="mb-0 text-white nav-user-name">{{customer}}</h5>
+                    <span class="status"></span><span class="ml-2">Available</span>
+                  </div>
+                  <a class="dropdown-item" (click)="Profile()"><i class="fas fa-user mr-2"></i>Account</a>
+                  <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                  <a class="dropdown-item" (click)="logout()"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class=" col-md-8">hello</div>
+  </div>
+</div> -->
+<div class="container">
+  <div class="  row">
+
+    <div class="col-md-4">
+      <div class="dashboard-header">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+          <a class="navbar-brand" href="#"> E-Shop</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto navbar-right-top">
+
+              <!-- <li class="nav-item dropdown notification">
+                        <a class="nav-link nav-icons" routerLink="/cart" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-cart-shopping"></i> <span class="indicator" ></span></a>
+                     
+                    </li> -->
+              <button routerLink="/cart" class="btn btn-danger my-2 my-sm-0">
+                Cart <span class="badge badge-dark">{{count_cart}}</span>
+              </button>
+              <li class="nav-item dropdown nav-user">
+                <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false"><img
+                    src="{{details[0].profile_Path}}" alt=""
+                    class="user-avatar-md rounded-circle"></a>
+                <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                  aria-labelledby="navbarDropdownMenuLink2">
+                  <div class="nav-user-info">
+                    <h5 class="mb-0 text-white nav-user-name">{{customer}}</h5>
+                    <span class="status"></span><span class="ml-2">Available</span>
+                  </div>
+                  <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal"><i
+                      class="fas fa-cart-user mr-2"></i><b> Update Details</b></a>
+                  <a class="dropdown-item" routerLink="/UpdateProfile"><i class="fas fa-cart-shopping mr-2"></i><b>change Profile</b></a>
+                  <a class="dropdown-item" routerLink="/UpdatePassword"><i class="fas fa-cog mr-2"></i><b>Setting</b></a>
+                  <a class="dropdown-item" (click)="logout()"><i class="fas fa-power-off mr-2"></i><b>Logout</b></a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class=" col-md-8">hello</div>
+  </div>
+</div>
+
+
+
+
+<section>
+  <div class="container py-5">
+    <h1>Product Listings</h1>
+    <h1 *ngIf="products.length==0">No Records Found...</h1>
+    <div class="row justify-content-center mb-3" *ngIf="products.length!=0">
+      <div class="col-md-12 mb-2 col-xl-10" *ngFor="let data of products;let i=index">
+        <div class="card shadow-0 border rounded-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                  <img src="{{data.ProductImage}}" class="w-100" />
+
+
+                  <a href="#!">
+                    <div class="hover-overlay">
+                      <div class="mask" style="background-color: rgba(253, 253, 253, 0.15)"></div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-6 col-xl-6">
+                <h4>Name : {{data.ProductName }}</h4>
+                <div class="d-flex flex-row">
+                  <div class="text-danger mb-1 me-2">
+                    <p>{{data.ProductCategory}}</p>
+                  </div>
+
+                </div>
+
+                <p class="text-truncate mb-4 mb-md-0">Brand : {{data.ProductBrand}}</p>
+              </div>
+              <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                <div class="d-flex flex-row align-items-center mb-1">
+                  <h4 class="mb-1 me-1">Price : ₹{{data.ProductSellingPrice
+                    }}</h4>
+
+                </div>
+
+
+                <div class="col-md-12">
+                  <div class="rating">Rating:
+                    <label for="stars-rating-5"><i class="fa fa-star text-danger"></i></label>
+                    <label for="stars-rating-4"><i class="fa fa-star text-danger"></i></label>
+                    <label for="stars-rating-3"><i class="fa fa-star text-danger"></i></label>
+                    <label for="stars-rating-2"><i class="fa fa-star text-warning"></i></label>
+                    <label for="stars-rating-1"><i class="fa fa-star text-warning"></i></label>
+                  </div>
+                </div>
+                <div class="d-flex flex-column mt-4">
+                  <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                    type="button" (click)="addToCart(data.ProductId,i)">
+                    Add to cart
+                  </button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <button (click)="GetCartCount()"></button> -->
+
+<!-- UpdateProfileForm -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="wrapper">
+     
+        <form [formGroup]="Registration" (ngSubmit)="OnSubmit()" class="form-right" novalidate>
+          <div class="row">
+            <div class="col-md-6">
+              <label>First Name</label>
+              <input placeholder="First Name" [class.is-invalid]="f['First_Name'].invalid && f['First_Name'].touched"
+                type="text" name="First_Name" id="First_Name" formControlName="First_Name" class="input-field" />
+              <div style="color: red" *ngIf="f['First_Name'].invalid && f['First_Name'].touched">
+                <div *ngIf="f['First_Name'].errors && f['First_Name'].errors['required']">
+                  First Name required
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label>Last Name</label>
+              <input placeholder="Last Name" type="text" name="Last_Name" id="Last_Name" class="input-field"
+                formControlName="Last_Name" />
+              <div style="color: red" *ngIf="f['Last_Name'].invalid && f['Last_Name'].touched">
+                <div *ngIf="f['Last_Name'].errors && f['Last_Name'].errors['required']">
+                  Last Name required
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Date Of Birth</label>
+              <input placeholder="Date of Birth" formControlName="DateOfBirth" type="text" onfocus="(this.type='date')"
+                onblur="(this.type='text')" max="2023-04-20" class="input-field" name="email" />
+              <div style="color: red" *ngIf="f['DateOfBirth'].invalid && f['DateOfBirth'].touched">
+                <div *ngIf="f['DateOfBirth'].errors && f['DateOfBirth'].errors['required']">
+                  DOB is required
+                </div>
+                <div *ngIf="f['DateOfBirth'].errors && f['DateOfBirth'].errors['pattern']"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label>
+                Phone Number : <br />
+                <input type="text" class="input-field" maxlength="13"
+                  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                  formControlName="Mobile_Number" placeholder="Phone Number" />
+              </label>
+              <div style="color: red" *ngIf="(f.Mobile_Number.touched || submited) && f.Mobile_Number.errors">
+                Phone Number is required
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Address</label>
+
+              <textarea placeholder="Address" formControlName="Address" class="input-field  p-1" style="width: 80%"
+                cols="50" rows="1"></textarea>
+              <div style="color: red" *ngIf="f['Address'].invalid && f['Address'].touched">
+                <div *ngIf="f['Address'].errors && f['Address'].errors['required']">
+                  Address is required
+                </div>
+                <div *ngIf="f['Address'].errors && f['Address'].errors['maxlength']">
+                  Max Length 20
+                </div>
+                <div *ngIf="f['Address'].errors && f['Address'].errors['minlength']">
+                  Min Length 3
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label>
+                Zip-code <br />
+                <input type="text" class="input-field" maxlength="6"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                  formControlName="Zipcode" placeholder="Zip-code" />
+              </label>
+              <div style="color: red" *ngIf="(f.Zipcode.touched || submited) && f.Zipcode.errors">
+                Zip-code is required
+              </div>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-md-6">
+            <label>Country</label>
+            <select (change)="Getstate($event.target)" id="country" name="country" class="input-field"
+              formControlName="Country">
+              <option [defaultSelected]=""> Choose Country </option>
+
+              <option *ngFor="let c of country" value="{{ c.id }}">{{ c.countries }}</option>
+            </select>
+            <div style="color: red" *ngIf="f['Country'].invalid && f['Country'].touched">
+              <div *ngIf="f['Country'].errors && f['Country'].errors['required']">
+                Country is required
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>State</label>
+            <select id="state" name="state" class="input-field" formControlName="state">
+              <option [defaultSelected]="">Choose State </option>
+              <option *ngFor="let s of states" value="{{ s.countryId }}">{{ s.state }}</option>
+            </select>
+            <div style="color: red" *ngIf="f['state'].invalid && f['state'].touched">
+              <div *ngIf="f['state'].errors && f['state'].errors['required']">
+                State required
+              </div>
+            </div>
+          </div>
+</div>
+<br>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <button type="submit" class="btn btn-primary" data-dismiss>Save Details</button>
+</div>
+        </form>
+      </div>
+    </div>
+    </div>
+  </div>

@@ -1,0 +1,1212 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="dashboard-header">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+          <a class="navbar-brand" href="#"> Dashboard</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto navbar-right-top">
+              <li class="nav-item dropdown notification">
+                <!-- Button trigger modal -->
+                <button
+                  type="button"
+                  class="btn btn-light mt-2 mr-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                  (click)="openaddform()"
+                >
+                  Add New Product
+                </button>
+
+                <!-- <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                          <li>
+                              <div class="notification-title"> Cart</div>
+                              <div class="notification-list">
+                                  <div class="list-group">
+                                      <a href="#" class="list-group-item list-group-item-action active">
+                                          <div class="notification-info">
+                                              <div class="notification-list-user-img"><img src="https://img.icons8.com/office/100/000000/administrator-female.png" alt="" class="user-avatar-md rounded-circle"></div>
+                                              <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Hukonah</span>accepted your invitation to join the team.
+                                                  <div class="notification-date">2 min ago</div>
+                                              </div>
+                                          </div>
+                                      </a>
+                                      <a href="#" class="list-group-item list-group-item-action">
+                                          <div class="notification-info">
+                                              <div class="notification-list-user-img"><img src="https://img.icons8.com/color/48/000000/administrator-female.png" alt="" class="user-avatar-md rounded-circle"></div>
+                                              <div class="notification-list-user-block"><span class="notification-list-user-name">John Sammy</span>updated the email address
+                                                  <div class="notification-date">2 days ago</div>
+                                              </div>
+                                          </div>
+                                      </a>
+                                      <a href="#" class="list-group-item list-group-item-action">
+                                          <div class="notification-info">
+                                              <div class="notification-list-user-img"><img src="https://img.icons8.com/color/100/000000/name.png" alt="" class="user-avatar-md rounded-circle"></div>
+                                              <div class="notification-list-user-block"><span class="notification-list-user-name">Kioh Samso</span> is watching your main repository
+                                                  <div class="notification-date">2 min ago</div>
+                                              </div>
+                                          </div>
+                                      </a>
+                                     
+                                  </div>
+                              </div>
+                          </li>
+                          <li>
+                              <div class="list-footer"> <a href="#">View all notifications</a></div>
+                          </li>
+                      </ul> -->
+              </li>
+
+              <li class="nav-item dropdown nav-user">
+                <a
+                  class="nav-link nav-user-img"
+                  href="#"
+                  id="navbarDropdownMenuLink2"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><img
+                    src="{{details[0].profile_Path}}"
+                    alt=""
+                    class="user-avatar-md rounded-circle"
+                /></a>
+                <div
+                  class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                  aria-labelledby="navbarDropdownMenuLink2"
+                >
+                  <div class="nav-user-info">
+                    <h5 class="mb-0 text-white nav-user-name">{{Admin}}</h5>
+                    <span class="status"></span
+                    ><span class="ml-2">Available</span>
+                  </div>
+                  <a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#staticBackdrop1" (click)="UpdateProfile()"
+                    ><i class="fas fa-user mr-2"></i>Account</a
+                  >
+                  <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
+                    ><i class="fas fa-cog mr-2"></i>Change Password</a
+                  >
+                  <a class="dropdown-item" (click)="logout()"
+                    ><i class="fas fa-power-off mr-2"></i>Logout</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-4"></div>
+  </div>
+</div>
+
+<section>
+  <div class="container py-5">
+    <h1>Product Listings</h1>
+    <h1 *ngIf="product.length==0">No Records Found...</h1>
+    <div class="row justify-content-center mb-3" *ngIf="product.length!=0">
+      <div class="col-md-12 mb-2 col-xl-10" *ngFor="let data of product">
+        <div class="card shadow-0 border rounded-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                  <img
+                    src="{{data.ProductImage}}"
+                    
+                    class="w-100"
+                    
+                  />
+
+                  
+                  <a href="#!">
+                    <div class="hover-overlay">
+                      <div
+                        class="mask"
+                        style="background-color: rgba(253, 253, 253, 0.15)"
+                      ></div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-6 col-xl-6">
+                <h4>Name : {{data.ProductName}}</h4>
+                <div class="d-flex flex-row">
+                    <div class="text-danger mb-1 me-2">
+                      <p>{{data.ProductCategory}}</p>
+                    </div>
+                    
+                  </div>
+                <div class="mt-1 mb-0 text-muted small">
+                    <span>{{data.ProductStock}} remains</span>
+                    <!-- <span class="text-primary"> • </span>
+                    <span>Light weight</span>
+                    <span class="text-primary"> • </span>
+                    <span>Best finish<br /></span> -->
+                  </div>
+                  <!-- <div class="mb-2 text-muted small">
+                    <span>Unique design</span>
+                    <span class="text-primary"> • </span>
+                    <span>For men</span>
+                    <span class="text-primary"> • </span>
+                    <span>Casual<br /></span>
+                  </div> -->
+                <p class="text-truncate mb-4 mb-md-0">Brand : {{data.ProductBrand}}</p>
+              </div>
+              <div
+                class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start"
+              >
+                <div class="d-flex flex-row align-items-center mb-1">
+                  <h4 class="mb-1 me-1">SP : {{data.ProductSellingPrice
+                  }}</h4>
+                  <span class="text-danger ">PP :<s> {{data.ProductPurchasingPrice
+                  }}</s></span>
+                </div>
+                <h5 class="text-success">#{{data.ProductCode}}</h5>
+                <div class="d-flex flex-column mt-4">
+                  <button class="btn btn-primary btn-sm"  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop" type="button" (click)="update(data.ProductId)">
+                    Edit
+                  </button>
+                  <button
+                    class="btn btn-outline-primary btn-sm mt-2"
+                    type="button" (click)="Delete(data.ProductId)"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="staticBackdropLabel" *ngIf="flag=='openadd'">Add Product</h2>
+        <h2 id="staticBackdropLabel"  *ngIf="flag=='openupdate'">Update Product</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          id="close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="SOAP" >
+          <div>
+            <div>
+              <label for="Product Name">
+                Product Name:<span style="color: red">*</span></label
+              >
+              <input
+                [ngClass]="{
+                  'is-invalid': submited && SOAPControl.productName.errors
+                }"
+                type="text"
+                name="date"
+                class="form-control"
+                formControlName="productName"
+              />
+            </div>
+            <div
+              *ngIf="
+                SOAPControl.productName.touched &&
+                SOAPControl.productName.errors
+              "
+            >
+              <small style="color: red"> Required </small>
+            </div>
+
+            <div>
+              <label for="productCode">
+                Product Code:<span style="color: red">*</span></label
+              >
+              <input
+                [ngClass]="{
+                  'is-invalid': submited && SOAPControl.productCode.errors
+                }"
+                type="text"
+                name="date"
+                class="form-control"
+                formControlName="productCode"
+              />
+            </div>
+            <div
+              *ngIf="
+                SOAPControl.productCode.touched &&
+                SOAPControl.productCode.errors
+              "
+            >
+              <small style="color: red"> Required </small>
+            </div>
+
+            <div>
+              <label for="productCategory">
+                Product Category:<span style="color: red">*</span></label
+              >
+              <input
+                [ngClass]="{
+                  'is-invalid': submited && SOAPControl.productCategory.errors
+                }"
+                type="text"
+                name="date"
+                class="form-control"
+                formControlName="productCategory"
+              />
+            </div>
+            <div
+              *ngIf="
+                SOAPControl.productCategory.touched &&
+                SOAPControl.productCategory.errors
+              "
+            >
+              <small style="color: red"> Required </small>
+            </div>
+
+            <label for="productBrand">
+              Product Brand:<span style="color: red">*</span></label
+            >
+            <input
+              [ngClass]="{
+                'is-invalid': submited && SOAPControl.productBrand.errors
+              }"
+              type="text"
+              name="Objective"
+              class="form-control"
+              formControlName="productBrand"
+            />
+          </div>
+          <div
+            *ngIf="
+              SOAPControl.productBrand.touched &&
+              SOAPControl.productBrand.errors
+            "
+          >
+            <small style="color: red"> Required </small>
+          </div>
+
+          <label for="productSellingPrice">
+            product Selling Price:<span style="color: red">*</span></label
+          >
+          <input
+            [ngClass]="{
+              'is-invalid': submited && SOAPControl.productSellingPrice.errors
+            }"
+            type="text"
+            name="Assessment"
+            class="form-control"
+            pattern="\d{1,10}"
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+            maxlength="10"
+            formControlName="productSellingPrice"
+          />
+          <div
+            *ngIf="
+              SOAPControl.productSellingPrice.touched &&
+              SOAPControl.productSellingPrice.errors
+            "
+          >
+            <small style="color: red"> Price not valid </small>
+          </div>
+
+          <div>
+            <label for="product Purchase Price">
+              product Purchase Price:<span style="color: red">*</span></label
+            >
+            <input
+              [ngClass]="{
+                'is-invalid':
+                  submited && SOAPControl.productPurchasePrice.errors
+              }"
+              type="text"
+              name="date"
+              pattern="\d{1,8}"
+              maxlength="8"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+              class="form-control"
+              formControlName="productPurchasePrice"
+            />
+          </div>
+          <div
+            *ngIf="
+              SOAPControl.productPurchasePrice.touched &&
+              SOAPControl.productPurchasePrice.errors
+            "
+          >
+            <small style="color: red"> Price not valid </small>
+          </div>
+
+          <div>
+            <label for="productStock">
+              Product Stock:<span style="color: red">*</span></label
+            >
+            <input
+              [ngClass]="{
+                'is-invalid': submited && SOAPControl.productStock.errors
+              }"
+              type="text"
+              name="date"
+              pattern="\d{1,8}"
+              maxlength="8"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+              class="form-control"
+              formControlName="productStock"
+            />
+          </div>
+          <div
+            *ngIf="
+              SOAPControl.productStock.touched &&
+              SOAPControl.productStock.errors
+            "
+          >
+            <small style="color: red"> Required </small>
+          </div>
+
+          <!-- <label for="Plan">
+            Product Image:<span style="color: red">*</span></label
+          >
+          <input
+            [ngClass]="{
+              'is-invalid': submited && SOAPControl.productImage.errors
+            }"
+            type="file"
+            name="Plan"
+            class="form-control"
+            formControlName="productImage"
+            style="margin-bottom: 20px"
+            (change)="uploadImage($event)"
+          />
+          <div
+            *ngIf="
+              SOAPControl.productImage.touched &&
+              SOAPControl.productImage.errors
+            "
+          >
+            <small style="color: red"> Image Required </small>
+          </div> -->
+          <div *ngIf="flag=='openadd'">
+           <label for="Plan">
+            Product Image:<span style="color: red">*</span></label
+          >
+          <input [ngClass]="{ 'is-invalid': submited && SOAPControl.productImage.errors }" type="file" name="Plan" 
+          class="form-control" formControlName="productImage" style="margin-bottom: 20px"  (change)="uploadImage($event)">
+        <div *ngIf="SOAPControl.productImage.touched && SOAPControl.productImage.errors">
+          <small style="color: red"> Image Required </small>
+        </div></div>
+
+          <!-- <button
+          type="submit"
+          class="btn btn-primary"
+
+  (click)="Submit()"
+          style="margin-left: 12px; margin-right: 155px"
+        >
+          Add
+        </button> -->
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+
+            <button type="submit" class="btn btn-primary" *ngIf="flag=='openadd'" (click)="Submit()">
+              Add Product
+            </button>
+            <button class="btn btn-primary" *ngIf="flag=='openupdate'"(click)="UpdateProduct()">
+              Update Product
+            </button>
+          
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 
+<button style="float: right; margin-left: 10px" class="btn btn-danger">
+  Logout
+</button>
+
+<button style="float: right" class="btn btn-light">Profile</button>
+
+<h3 style="margin-top: 10px">Provider DashBoard</h3>
+<div *ngIf="showFlag == 'show'">
+  <button
+    style="float: right; margin-right: 250px"
+    class="btn btn-dark"
+    (click)="gotoDashboard()"
+  >
+    back
+  </button>
+</div>
+<div
+  *ngIf="showFlag == 'show'"
+  class="tab-content"
+  style="background-color: #fff; border-radius: 10px"
+>
+  <div class="container" aria-labelledby="tab-login">
+    <h2>Your Profile</h2>
+    <br />
+    <!-- <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+      <div>
+        <div>
+          <label for="f_name">
+            <span style="color:red;">
+              *</span>
+            First Name:
+          </label>
+          <input [ngClass]="{'is-invalid':submited 
+                           && loginformcontrol.f_name.errors}" type="text" name="f_name" class="input-field"
+            placeholder="First Name" formControlName="f_name" (click)="updateButtonFlag()">
+        </div>
+
+        <div *ngIf="(loginformcontrol.f_name.touched) && 
+                      loginformcontrol.f_name.errors">
+          <small style="color: red;">
+            First name is required
+          </small>
+        </div>
+
+        <div>
+          <label for="l_name">
+            <span style="color:red;">
+              *
+            </span>
+            Last Name:
+          </label>
+
+          <input [ngClass]="{'is-invalid':submited && 
+                           loginformcontrol.l_name.errors}" type="text" name="l_name" class="input-field"
+            placeholder="Last Name" formControlName="l_name" (click)="updateButtonFlag()">
+        </div>
+
+        <div *ngIf="(loginformcontrol.l_name.touched) 
+                      && loginformcontrol.l_name.errors">
+          <small style="color: red;">
+            Last name is required
+          </small>
+        </div>
+
+
+        <div>
+          <label for="email">
+            <span style="color:red;">
+              *
+            </span>
+            Email:
+          </label>
+
+          <input [ngClass]="{'is-invalid':submited && 
+                           loginformcontrol.email.errors}" type="email" name="email" class="input-field"
+            placeholder="Email" formControlName="email" readonly>
+        </div>
+
+        <div *ngIf="(loginformcontrol.email.touched) 
+                      && loginformcontrol.email.errors">
+          <small style="color: red;">
+            Email is required(ex: abc@gmail.com)
+          </small>
+        </div>
+
+        <div>
+          <label for="Mobile">
+            <span style="color:red;">
+              *
+            </span>
+            Mobile:
+          </label>
+
+          <input [ngClass]="{'is-invalid':submited && 
+                           loginformcontrol.mobile.errors}" type="text" name="Mobile" class="input-field"
+            placeholder="Mobile" formControlName="mobile" minlength="10" maxlength="12" pattern="[0-9]+"
+            (click)="updateButtonFlag()">
+        </div>
+
+        <div *ngIf="(loginformcontrol.mobile.touched) 
+                        && loginformcontrol.mobile.errors">
+          <small style="color: red;">
+            plese enter valid number
+          </small>
+        </div>
+
+
+        <div>
+          <label for="DOB">
+            <span style="color:red;">
+              *
+            </span>
+            Date of birth:
+          </label>
+          <input [ngClass]="{'is-invalid':submited && 
+                           loginformcontrol.DOB.errors}" type="date" name="DOB" class="input-field" placeholder="DOB"
+            formControlName="DOB" min="1950-05-11" max="2023-04-04" (click)="updateButtonFlag()">
+        </div>
+
+        <div *ngIf="(loginformcontrol.DOB.touched) 
+                     && loginformcontrol.DOB.errors">
+          <small style="color: red;">
+            Required
+          </small>
+        </div>
+
+        <div>
+          <label for="Experience">
+            <span style="color:red;">
+              *
+            </span>
+            Experience(years):
+          </label>
+          <input [ngClass]="{'is-invalid':submited && 
+                           loginformcontrol.Experience.errors}" type="number" name="Experience" class="input-field"
+            placeholder="Experience" formControlName="Experience" min="0" max="60" (click)="updateButtonFlag()">
+        </div>
+
+        <div *ngIf="(loginformcontrol.Experience.touched) 
+                      && loginformcontrol.Experience.errors">
+          <small style="color: red;">
+            Required(max:60)
+          </small>
+        </div>
+
+        <div>
+          <label for="speciality">
+            <span style="color:red;">
+              *
+            </span>
+            Speciality
+          </label><br>
+          <select [ngClass]="{'is-invalid':submited && 
+                            loginformcontrol.speciality.errors}" class="dropdown form-control" name="speciality"
+            id="speciality" formControlName="speciality" (click)="updateButtonFlag()">
+
+            <option *ngFor="let speciality of Speciality" value={{speciality.id}}>
+              {{speciality.speciality}}
+            </option>
+          </select>
+
+        </div>
+        <div *ngIf="(loginformcontrol.speciality.touched) 
+                          && loginformcontrol.speciality.errors">
+          <small style="color: red;">
+            Required
+          </small>
+        </div>
+
+
+        <div>
+          <label for="Position">
+            <span style="color:red;">
+              *
+            </span>
+            Position:
+          </label>
+          <input [ngClass]="{'is-invalid':submited && 
+                           loginformcontrol.Position.errors}" type="text" name="Position" class="input-field"
+            placeholder="Position" formControlName="Position" (click)="updateButtonFlag()">
+        </div>
+
+        <div *ngIf="(loginformcontrol.Position.touched) 
+                  && loginformcontrol.Position.errors">
+          <small style="color: red;">
+            Required
+          </small>
+        </div>
+
+
+
+        <div><br>
+          <p>Address:</p>
+          <textarea [ngClass]="{'is-invalid':submited && 
+                                 loginformcontrol.address.errors}" class="address form-control" id="tutorial"
+            name="tutorial" rows="4" cols="40" formControlName="address" (click)="updateButtonFlag()">
+                                 address
+                        </textarea>
+
+          <div *ngIf="(loginformcontrol.address.touched) 
+                              && loginformcontrol.address.errors">
+            <small style="color: red;">
+              Required
+            </small>
+          </div>
+
+
+          <button [disabled]="!updateFlag" class="btn btn-primary btnLoginRegister" type="submit">Update</button>&nbsp;
+
+        </div>
+
+        <div *ngIf="loader" class="cssload-container">
+          <div class="cssload-speeding-wheel"></div>
+        </div>
+
+      </div>
+
+    </form> -->
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="FormModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="staticBackdropLabel"> Update Profile</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="upateButtonFlagEnable()"></button>
+    </div>
+    <div class="modal-body">
+      <!-- form start -->
+      <form [formGroup]="loginform" (ngSubmit)="onSubmitProfileForm()">
+        <div class="row">
+          <div class="col-md-6">
+            <label>First Name</label>
+            <input placeholder="First Name" [class.is-invalid]="loginformcontrol['First_Name'].invalid && loginformcontrol['First_Name'].touched"
+              type="text" name="First_Name" id="First_Name" formControlName="First_Name" (keydown)="updateButtondisable()" />
+            <div style="color: red" *ngIf="loginformcontrol['First_Name'].invalid && loginformcontrol['First_Name'].touched">
+              <div *ngIf="loginformcontrol['First_Name'].errors && loginformcontrol['First_Name'].errors['required']">
+                First Name required
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>Last Name</label>
+            <input placeholder="Last Name" type="text" name="Last_Name" id="Last_Name" (keydown)="updateButtondisable()"
+              formControlName="Last_Name" />
+            <div style="color: red" *ngIf="loginformcontrol['Last_Name'].invalid && loginformcontrol['Last_Name'].touched">
+              <div *ngIf="loginformcontrol['Last_Name'].errors && loginformcontrol['Last_Name'].errors['required']">
+                Last Name required
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Date Of Birth</label>
+            <input placeholder="Date of Birth" formControlName="DateOfBirth" type="text" (keydown)="updateButtondisable()" onfocus="(this.type='date')"
+              onblur="(this.type='text')" max="2023-04-20" class="input-field" name="email" />
+            <div style="color: red" *ngIf="loginformcontrol['DateOfBirth'].invalid && loginformcontrol['DateOfBirth'].touched">
+              <div *ngIf="loginformcontrol['DateOfBirth'].errors && loginformcontrol['DateOfBirth'].errors['required']">
+                DOB is required
+              </div>
+              <div *ngIf="loginformcontrol['DateOfBirth'].errors && loginformcontrol['DateOfBirth'].errors['pattern']"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>
+              Phone Number : <br />
+              <input type="text" class="input-field" maxlength="13"
+                oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                formControlName="Mobile_Number" (keydown)="updateButtondisable()" placeholder="Phone Number" />
+            </label>
+            <div style="color: red" *ngIf="(loginformcontrol.Mobile_Number.touched || submited) && loginformcontrol.Mobile_Number.errors">
+              Phone Number is required
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Address</label>
+
+            <textarea placeholder="Address" formControlName="Address" (keydown)="updateButtondisable()" class="input-field  p-1" style="width: 80%"
+              cols="50" rows="1"></textarea>
+            <div style="color: red" *ngIf="loginformcontrol['Address'].invalid && loginformcontrol['Address'].touched">
+              <div *ngIf="loginformcontrol['Address'].errors && loginformcontrol['Address'].errors['required']">
+                Address is required
+              </div>
+              <div *ngIf="loginformcontrol['Address'].errors && loginformcontrol['Address'].errors['maxlength']">
+                Max Length 20
+              </div>
+              <div *ngIf="loginformcontrol['Address'].errors && loginformcontrol['Address'].errors['minlength']">
+                Min Length 3
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label>
+              Zip-code <br />
+              <input type="text" class="input-field" maxlength="6"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                formControlName="Zipcode" (keydown)="updateButtondisable()" placeholder="Zip-code" />
+            </label>
+            <div style="color: red" *ngIf="(loginformcontrol.Zipcode.touched || submited) && loginformcontrol.Zipcode.errors">
+              Zip-code is required
+            </div>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-md-6">
+          <label>Country</label>
+          <select (change)="Getstate($event.target)" id="country" name="country" class="input-field"
+            formControlName="Country">
+            <option [defaultSelected]=""> Choose Country </option>
+
+            <option *ngFor="let c of country" value="{{ c.id }}">{{ c.countries }}</option>
+          </select>
+          <div style="color: red" *ngIf="loginformcontrol['Country'].invalid && loginformcontrol['Country'].touched">
+            <div *ngIf="loginformcontrol['Country'].errors && loginformcontrol['Country'].errors['required']">
+              Country is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>State</label>
+          <select id="state" name="state" class="input-field" formControlName="state">
+            <option [defaultSelected]="">Choose State </option>
+            <option *ngFor="let s of states" value="{{ s.countryId }}">{{ s.state }}</option>
+          </select>
+          <div style="color: red" *ngIf="loginformcontrol['state'].invalid && loginformcontrol['state'].touched">
+            <div *ngIf="loginformcontrol['state'].errors && loginformcontrol['state'].errors['required']">
+              State required
+            </div>
+          </div>
+        </div>
+</div>
+      </form>
+
+
+      <!-- form end -->
+    
+    </div>
+    <div class="modal-footer">
+      <button id="closeChangeImage"  style="width: 200px;" class="btn btn-light btn-block" data-bs-toggle="modal" data-bs-dismiss="#staticBackdrop1"(click)="upateButtonFlagEnable()" >Close</button>      
+      <button [disabled]="!updateButtonFlag" (click)="onSubmitProfileForm()" style="width: 200px;" class="btn btn-primary btn-block"
+>Submit</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<button hidden id="openFormProfileModal" data-bs-toggle="modal" data-bs-target="#FormModal"></button>
+<button hidden id="closeFormProfileModal" data-bs-toggle="modal" data-bs-dismiss="#FormModal"></button>
+
+
+
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Update  Password</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          
+  <div class="wrapper  " >
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+    
+  
+      <!-- Login Form -->
+      
+      <form [formGroup]="updatepassform"   novalidate style="margin: 10px;">
+      
+        <input maxlength="20" [class.is-invalid]="
+          f['password'].invalid && f['password'].touched
+        " type="text" id="login" class=" form-control" name="login" placeholder="New Password" formControlName="password">
+  
+        <span style="color: red;   text-align: left;" *ngIf="f['password'].invalid && f['password'].touched">
+          Password is required
+        </span>
+        <br>
+  
+        <input  [class.is-invalid]="
+        f['conpassword'].invalid && f['conpassword'].touched
+      " type="password" id="password" maxlength="20" class=" form-control" name="login" placeholder="Confirm Password"
+          formControlName="conpassword">
+        <span style=" text-align: left; color: red;" *ngIf="f['conpassword'].invalid && f['conpassword'].touched">
+          password didn't matched
+        </span>
+        <!-- <br><br><select  style="font-weight: lighter;border: none;font-size: 2rem;" class="select  fourth">
+             
+              <option value="0" selected disabled>Your Role</option>
+              <option value="Patient">Patient</option>
+              <option value="Provider">Provider</option>
+              
+            </select>
+            <br> -->
+        
+        <!-- <input type="submit" class=" fourth" value="Log In"> -->
+        <!--    -->
+        <!-- or
+        <button style="margin-left:5px ;"
+         class="btn btn-secondary  " routerLink="/register">Register </button> -->
+        
+        <!-- <br><button style="font-size: 1.4rem; " type="button" (click)="onSubmit(log)" class="btn btn-primary">Log IN</button> -->
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <!-- <div id="formFooter" > b
+        <h5>Forgot Password?? <a style="
+          font-size: 1rem; color: blue;" routerLink="/forget-password">Reset here</a></h5>
+      
+              
+      </div> -->
+  
+    </div>
+  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="close1" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click)="updatepass()">Change</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  <form [formGroup]="loginform" (ngSubmit)="onSubmit()" class="form">
+      <div class="form-group">
+        <label for="f_name"> First Name: </label>
+        <input
+          [ngClass]="{
+            'is-invalid': submited && loginformcontrol.f_name.errors
+          }"
+          type="text"
+          name="f_name"
+          class="input-field"
+          placeholder="First Name"
+          formControlName="f_name"
+          (click)="updateButtonFlag()"
+        />
+      </div>
+
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="l_name"> Last Name: </label>
+
+          <input
+            [ngClass]="{
+              'is-invalid': submited && loginformcontrol.l_name.errors
+            }"
+            type="text"
+            name="l_name"
+            class="input-field"
+            placeholder="Last Name"
+            formControlName="l_name"
+            (click)="updateButtonFlag()"
+          />
+        </div>
+      </div>
+       <div class="col-md-6">
+              <div class="form-group">
+                <label>UserName</label>
+                <input class="input-field" readonly type="text" name="username" placeholder=""  >
+              </div>
+            </div> -->
+
+<!-- <div class="form-group">
+        <label for="email"> Email: </label>
+
+        <input
+          [ngClass]="{
+            'is-invalid': submited && loginformcontrol.email.errors
+          }"
+          type="email"
+          name="email"
+          class="input-field"
+          placeholder="Email"
+          formControlName="email"
+          readonly
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="Mobile"> Mobile: </label>
+
+        <input
+          [ngClass]="{
+            'is-invalid': submited && loginformcontrol.mobile.errors
+          }"
+          type="text"
+          name="Mobile"
+          class="input-field"
+          placeholder="Mobile"
+          formControlName="mobile"
+          minlength="10"
+          maxlength="12"
+          pattern="[0-9]+"
+          (click)="updateButtonFlag()"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="DOB"> Date of birth: </label>
+        <input
+          [ngClass]="{ 'is-invalid': submited && loginformcontrol.DOB.errors }"
+          type="date"
+          name="DOB"
+          class="input-field"
+          placeholder="DOB"
+          formControlName="DOB"
+          min="1950-05-11"
+          max="2023-04-04"
+          (click)="updateButtonFlag()"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="speciality"> Speciality </label><br />
+        <select
+          [ngClass]="{
+            'is-invalid': submited && loginformcontrol.speciality.errors
+          }"
+          class="dropdown form-control"
+          name="speciality"
+          id="speciality"
+          formControlName="speciality"
+          (click)="updateButtonFlag()"
+        >
+          <option
+            *ngFor="let speciality of Speciality"
+            value="{{ speciality.id }}"
+          >
+            {{ speciality.speciality }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="Position"> Position: </label>
+        <input
+          [ngClass]="{
+            'is-invalid': submited && loginformcontrol.Position.errors
+          }"
+          type="text"
+          name="Position"
+          class="input-field"
+          placeholder="Position"
+          formControlName="Position"
+          (click)="updateButtonFlag()"
+        />
+      </div>
+
+      <div class="form-group">
+        <br />Address
+        <textarea
+          [ngClass]="{
+            'is-invalid': submited && loginformcontrol.address.errors
+          }"
+          class="address form-control"
+          id="tutorial"
+          name="tutorial"
+          formControlName="address"
+          (click)="updateButtonFlag()"
+        >
+                                 Address is required
+                        </textarea
+        >
+      </div>
+
+      <div class="row">
+        <div class="col d-flex justify-content-end">
+          <button
+            [disabled]="!updateFlag"
+            class="btn btn-primary btnLoginRegister"
+            type="submit"
+          >
+            Update
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<h3
+  *ngIf="!isEmpty() && table == ''"
+  style="margin-top: 42px; margin-left: 38px"
+>
+  No Records...
+</h3>
+
+<div *ngIf="table == '' && isEmpty()">
+  <div>
+    <table
+      style="font-size: 1.2rem; border: 1px solid #000"
+      class="table table-borderless"
+      class="table table-bordered"
+    >
+      <tr>
+        <th>Patient Name</th>
+        <th>Appointment Date</th>
+        <th>Appointment Time</th>
+        <th>Note</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngFor="let data of AppointmentsList">
+        <td>{{ data.firstName + " " + data.lastName }}</td>
+        <td>{{ data.appointmentDate.substring(0, 10) }}</td>
+        <td>{{ data.appointmentTime }}</td>
+        <td>{{ data.note }}</td>
+        <td>
+          {{
+            data.appointmentStatus == "Booked" ? "open" : data.appointmentStatus
+          }}
+        </td>
+        <td *ngIf="data.appointmentStatus == 'Booked'">
+          <button
+            class="btn"
+            style="background-color: green; color: #fff"
+            (click)="view(data.appointmentId)"
+          >
+            View
+          </button>
+        </td>
+        <td *ngIf="data.appointmentStatus != 'Booked'">No Action</td>
+        <td *ngIf="data.appointmentStatus == 'Booked'">
+          <button
+            class="btn"
+            style="background-color: red; color: #fff"
+            (click)="cancal(data.appointmentId)"
+          >
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="modal == 'SOAPmodal'">
+  <div class="tab-content">
+    <div
+      class="container form"
+      style="height: 500px"
+      aria-labelledby="tab-login"
+    >
+      <form [formGroup]="SOAP">
+        <div>
+          <div>
+            <h2>SOAP Note</h2>
+            <br />
+            <label for="Subjective">
+              <span style="color: red">*</span> Subjective:</label
+            >
+            <textarea
+              [ngClass]="{
+                'is-invalid': submited && SOAPControl.subjective.errors
+              }"
+              type="text"
+              name="date"
+              class="input-field"
+              formControlName="subjective"
+            ></textarea>
+          </div>
+          <div
+            *ngIf="
+              SOAPControl.subjective.touched && SOAPControl.subjective.errors
+            "
+          >
+            <small style="color: red"> Required </small>
+          </div>
+
+          <label for="Objective">
+            <span style="color: red">*</span> Objective:</label
+          >
+          <textarea
+            [ngClass]="{
+              'is-invalid': submited && SOAPControl.Objective.errors
+            }"
+            type="text"
+            name="Objective"
+            class="input-field"
+            formControlName="Objective"
+          ></textarea>
+        </div>
+        <div
+          *ngIf="SOAPControl.Objective.touched && SOAPControl.Objective.errors"
+        >
+          <small style="color: red"> Required </small>
+        </div>
+
+        <label for="Assessment">
+          <span style="color: red">*</span> Assessment:</label
+        >
+        <textarea
+          [ngClass]="{
+            'is-invalid': submited && SOAPControl.Assessment.errors
+          }"
+          type="text"
+          name="Assessment"
+          class="input-field"
+          formControlName="Assessment"
+        ></textarea>
+        <div
+          *ngIf="
+            SOAPControl.Assessment.touched && SOAPControl.Assessment.errors
+          "
+        >
+          <small style="color: red"> Required </small>
+        </div>
+
+        <label for="Plan"> <span style="color: red">*</span> Plan:</label>
+        <textarea
+          [ngClass]="{ 'is-invalid': submited && SOAPControl.Plan.errors }"
+          type="text"
+          name="Plan"
+          class="input-field"
+          formControlName="Plan"
+          style="margin-bottom: 20px"
+        ></textarea>
+        <div *ngIf="SOAPControl.Plan.touched && SOAPControl.Plan.errors">
+          <small style="color: red"> Required </small>
+        </div>
+
+        <div class="modal-footer">
+          <button
+            id="close"
+            type="button"
+            (click)="closeView()"
+            class="btn btn-secondary"
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="Submit()"
+            style="margin-left: 12px; margin-right: 155px"
+          >
+            Add
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+-->

@@ -1,0 +1,358 @@
+<div class="container">
+    <div class="  row">
+    
+      <div class="col-md-4"><div class="dashboard-header">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+            <a class="navbar-brand" href="#"> E-Shop</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto navbar-right-top">
+                    
+                    
+                  
+                    <!-- <li class="nav-item dropdown nav-user">
+                        <a class="nav-link nav-user-img" href="#"  id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://img.icons8.com/dusk/100/000000/user-female-circle.png" alt="" class="user-avatar-md rounded-circle"></a>
+                        <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                            <div class="nav-user-info">
+                                <h5 class="mb-0 text-white nav-user-name">Tikoha Samga</h5>
+                                <span class="status"></span><span class="ml-2">Available</span>
+                            </div>
+                            <a class="dropdown-item" routerLink="/UpdateProfile" ><i class="fas fa-user mr-2"></i>Account</a>
+                            <a class="dropdown-item" routerLink="/UpdatePassword"><i class="fas fa-cog mr-2"></i>Setting</a>
+                            <a class="dropdown-item" (click)="logout()"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+        </nav>
+      </div></div>
+      <div class=" col-md-8" >hello</div>
+    </div></div>
+  
+
+<div><h1>Cart</h1></div>
+
+<div *ngIf="lengthOfCart==0">
+  <h3>Cart is Empty</h3>
+  <br>
+  <button (click)="ContineShoping()" class="btn btn-primary"> Contine shoping</button>
+</div>
+
+<div class="row">
+  <div class="container" class="col-6">
+    <div>
+      <div *ngFor="let item of cartItems;let i=index">
+        <!-- First product box start here-->
+        <div class="prod-info-main prod-wrap clearfix">
+          <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12">
+              <div class="product-image">
+                <img style="height: 259px;width: -webkit-fill-available;" src={{item.ProductImage}}
+                  class="img-responsive">
+              </div>
+            </div>
+            <div class="col-md-7 col-sm-12 col-xs-12">
+              <div class="product-deatil">
+                <h5 class="name">
+                  <span>
+                    {{item.ProductName}}
+                  </span>
+                  <a>
+                    <span>Category: {{item.ProductCategory}}</span>
+                  </a>
+                </h5>
+                <p class="price-container">
+                  <span></span>
+                </p>
+                <span class="tag1"></span>
+              </div>
+              <div class="description">
+                <span style="font-size: 18px;">Price : ₹{{item.ProductSellingPrice
+                  }}</span> <br>
+                <span style="font-size: 18px;">Available Stock: {{item.ProductStock
+                  }}</span>
+              </div>
+              <div class="col-md-12">
+                <div class="rating">Rating:
+                  <label for="stars-rating-5"><i class="fa fa-star text-danger"></i></label>
+                  <label for="stars-rating-4"><i class="fa fa-star text-danger"></i></label>
+                  <label for="stars-rating-3"><i class="fa fa-star text-danger"></i></label>
+                  <label for="stars-rating-2"><i class="fa fa-star text-warning"></i></label>
+                  <label for="stars-rating-1"><i class="fa fa-star text-warning"></i></label>
+                </div>
+              </div>
+              <br>
+              <div class="product-info smart-form">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="quantity buttons_added">
+                      <input type="button" value="-" (click)="minus(item.CartDetailId,i)" class="minus"><input readonly
+                        id="quantity" type="number" step="1" min="1" max="" name="quantity" value={{item.Quantity}}
+                        title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input
+                        (click)="add(item.CartDetailId,i)" type="button" value="+" class="plus">
+                    </div>
+                    <!-- <a class="btn btn-info" (click)="addToCart(item.Id)">Add To Cart</a>   -->
+                    <a class="btn btn-info mt-4 ml-2" (click)="RemoveCart(item.CartDetailId)">Remove</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- end product -->
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="lengthOfCart!=0" class=" col-6 ">
+    <div class="divstiky container prod-info-main prod-wrap clearfix">
+      <h4>Sub Total</h4>
+      <table class="table">
+        <tr>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+        <tr *ngFor="let item of cartItems">
+          <td>{{item.ProductName}}</td>
+          <td>{{item.Quantity}}</td>
+          <td>{{item.ProductSellingPrice}}</td>
+          <td>{{item.ProductSellingPrice*item.Quantity}}</td>
+        </tr>
+      </table>
+      --------------------------------------------------------------------------------------------
+      <div>
+        <table>
+          <tr>
+            <th>Total : </th>&nbsp;
+            <th>{{productPrise}}</th>
+          </tr>
+        </table>
+
+        <button id="BuyNow" style="display: flex;
+    margin: auto;" class="btn btn-info" (click)="BuyNow()">Buy Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+  
+  <!-- Modal -->
+  <div class="modal fade" id="AddressModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Plese Provide Address</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="AddressForm">
+          <div>
+            <div>
+              <label for="country"><span style="color:red;">*</span>
+                Country:
+              </label>
+              <select [ngClass]="{'is-invalid':AddressFormSubmited && 
+              AddressFormControl.Country.errors}" (change)="Getstate($event.target)" class="form-control"
+                formControlName="Country">
+                <option value="">Choose Country</option>                
+                <option *ngFor="let c of country" value={{c.id}}>{{c.country}}</option>
+              </select>
+            </div>
+            <div *ngIf="(AddressFormControl.Country.touched) 
+              && AddressFormControl.Country.errors">
+              <small style="color: red;">
+                Required
+              </small>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <div>
+                <label for="state"><span style="color:red;">*</span>
+                  State:
+                </label>
+                <select [ngClass]="{'is-invalid':AddressFormSubmited && 
+                AddressFormControl.State.errors}" class="form-control" formControlName="State">
+                 <option value="">Choose State</option>
+                 <!-- <option *ngIf="countrylength==0" > Plese Select Country</option> -->
+                  <option *ngFor="let state of states" value={{state.id}}>{{state.state}}</option>
+                </select>
+              </div>
+              <div *ngIf="(AddressFormControl.State.touched) 
+              && AddressFormControl.State.errors">
+                <small style="color: red;">
+                  Required
+                </small>
+              </div>
+
+            </div>
+
+            <div>
+              <div>
+                <label for="zipcode"><span style="color:red;">*</span>
+                  Zipcode:</label>
+                <input [ngClass]="{'is-invalid':AddressFormSubmited && 
+                  AddressFormControl.ZipCode.errors}" type="text" name="DOB" class="form-control" placeholder="Zipcode"
+                  formControlName="ZipCode" maxlength="6">
+              </div>
+              <div *ngIf="(AddressFormControl.ZipCode.touched) 
+                && AddressFormControl.ZipCode.errors">
+                <small style="color: red;">
+                  Required
+                </small>
+              </div>
+            </div>
+
+            <div>
+
+              <div>
+                <label for="Address"><span style="color:red;">*</span>
+                  Address:</label>
+                <textarea [ngClass]="{'is-invalid':AddressFormSubmited && 
+            AddressFormControl.AddressLine1.errors}" type="text" class="form-control" formControlName="AddressLine1"></textarea>
+                <!-- <input type="button" (click)="uploadFile()" value="upload"> -->
+              </div>
+              <div *ngIf="(AddressFormControl.AddressLine1.touched) 
+                   && AddressFormControl.AddressLine1.errors">
+                <small style="color: red;">
+                  Required
+                </small>
+              </div>
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button style="width: 200px;" class="btn btn-primary btn-lg btn-block" (click)="AddressSubmit()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<button hidden id="openAddressModal" data-bs-toggle="modal" data-bs-target="#AddressModal"></button>
+<button hidden id="closeAddressModal" data-bs-toggle="modal" data-bs-dismiss="#AddressModal"></button>
+
+
+<!-- Payment Modal -->
+
+ <div class="modal fade" id="PaymentModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Enter Card Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- <form [formGroup]="PaymentForm">
+          <div>
+            <label for="CardNumber"><span style="color:red;">*</span>
+              Card Number:</label>
+            <input [ngClass]="{'is-invalid':PaymentFormSubmited && 
+                PaymentFormControl.CardNumber.errors}" type="text" class="form-control" formControlName="CardNumber"
+              minlength="16" maxlength="16">
+
+            <div *ngIf="(PaymentFormControl.CardNumber.touched) 
+                && PaymentFormControl.CardNumber.errors">
+              <small style="color: red;">
+                Required(16 Digit)
+              </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+
+              <div>
+                <label for="ExpiryMonth"><span style="color:red;">*</span>
+                  Expiry Year:</label>
+                <input [ngClass]="{'is-invalid':PaymentFormSubmited && 
+                    PaymentFormControl.ExpiryYear.errors}" type="text" class="form-control"
+                  formControlName="ExpiryYear" minlength="4" maxlength="4">
+
+                <div *ngIf="(PaymentFormControl.ExpiryYear.touched) 
+                    && PaymentFormControl.ExpiryYear.errors">
+                  <small style="color: red;">
+                    Enter Valid Year
+                  </small>
+                </div>
+              </div>
+              <div>
+                <label for="ExpiryDate"><span style="color:red;">*</span>
+                  Expiry Month:</label>
+                <input [ngClass]="{'is-invalid':PaymentFormSubmited && 
+                  PaymentFormControl.ExpiryMonth.errors}" type="text" class="form-control"
+                  formControlName="ExpiryMonth" minlength="2" maxlength="2">
+
+                <div *ngIf="(PaymentFormControl.ExpiryMonth.touched)
+                  && PaymentFormControl.ExpiryMonth.errors">
+                  <small style="color: red;">
+                    Enter valid Month
+                  </small>
+                </div>
+              </div>
+              <div>
+                <label for="CVV"><span style="color:red;">*</span>
+                  CVV:</label>
+                <input [ngClass]="{'is-invalid':PaymentFormSubmited && 
+                PaymentFormControl.CVV.errors}" type="text" class="form-control" formControlName="CVV" minlength="3"
+                  maxlength="3">
+
+                <div *ngIf="(PaymentFormControl.CVV.touched) 
+                && PaymentFormControl.CVV.errors">
+                  <small style="color: red;">
+                    Required
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form> -->
+      </div>
+
+
+      <div id="payment-form">
+        <div id="payment-status-container"></div>
+        <div id="card-container"></div>
+        <button style="width: 200px;" class="btn btn-primary" id="card-button" type="button">Pay</button> &nbsp;
+        <button style="width: 200px;" class="btn btn-light" id="closePayment" data-bs-toggle="modal" data-bs-dismiss="#PaymentModel">Close</button>
+      </div>
+
+
+      <div class="modal-footer">
+
+        <!-- <button style="width: 200px;" class="btn btn-primary btn-lg btn-block" (click)="PaymentSubmit()">Submit</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<input hidden type="text" id="GetToken" value="some" #token  (click)="Gettoken(token.value)" >
+
+
+
+<!-- <div id="payment-form">
+  <div id="payment-status-container"></div>
+  <div id="card-container"></div>
+  <button style="width: 200px;" class="btn btn-primary" id="card-button" type="button">Pay</button> &nbsp;
+  <button style="width: 200px;" class="btn btn-light" id="closePayment" data-bs-toggle="modal" data-bs-dismiss="#PaymentModel">Close</button>
+</div> -->
+
+<button hidden id="openPayment" data-bs-toggle="modal" data-bs-target="#PaymentModel"></button>
+<button hidden id="closePayment" data-bs-toggle="modal" data-bs-dismiss="#PaymentModel"></button>
+
+<div *ngIf="loader" class="cssload-container">
+  <div class="cssload-speeding-wheel"></div>
+</div>

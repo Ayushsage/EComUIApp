@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="dashboard-header">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+          <a class="navbar-brand" href="#"> Profile</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto navbar-right-top">
+              <li class="nav-item dropdown notification">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark mt-2 mr-2" routerLink="/products">
+                  Back
+                </button>
+
+
+              </li>
+
+
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-4"></div>
+  </div>
+</div>
+
+
+<section style="background-color: #eee; height: 50vh;">
+  <div class="container py-5 h-0">
+    <div class="row d-flex justify-content-center align-items-center h-50">
+      <div class="col-md-9 col-xl-3">
+
+        <div class="card" style="border-radius: 5px;">
+          <div class="card-body text-center">
+            <div class="mt-2 mb-1">
+              <img src="{{details[0].profile_Path}}" class="rounded img-fluid" />
+            </div>
+            <h4 class="mb-2">{{details[0].First_Name}} {{details[0].Last_Name}}</h4>
+            <!-- <p class="text-muted mb-4">@Programmer <span class="mx-2">|</span> <a
+                  href="#!">mdbootstrap.com</a></p> -->
+            <!-- <div class="mb-4 pb-2">
+                <button type="button" class="btn btn-outline-primary btn-floating">
+                  <i class="fab fa-facebook-f fa-lg"></i>
+                </button>
+                <button type="button" class="btn btn-outline-primary btn-floating">
+                  <i class="fab fa-twitter fa-lg"></i>
+                </button>
+                <button type="button" class="btn btn-outline-primary btn-floating">
+                  <i class="fab fa-skype fa-lg"></i>
+                </button>
+              </div> -->
+            <!-- <button type="button" class="btn btn-primary btn-rounded btn-lg">
+                Message now
+              </button> -->
+            <!-- <div class="d-flex justify-content-between text-center mt-5 mb-2">
+                <div>
+                  <p class="mb-2 h5">8471</p>
+                  <p class="text-muted mb-0">Wallets Balance</p>
+                </div>
+                <div class="px-3">
+                  <p class="mb-2 h5">8512</p>
+                  <p class="text-muted mb-0">Income amounts</p>
+                </div>
+                <div>
+                  <p class="mb-2 h5">4751</p>
+                  <p class="text-muted mb-0">Total Transactions</p>
+                </div>
+              </div> -->
+            <form [formGroup]="SOAP">
+              <!-- <label for="Plan">  Product Image:<span style="color: red">*</span></label> -->
+              <input [ngClass]="{ 'is-invalid': submited && SOAPControl.Plan.errors }" type="file" name="Plan"
+                class="form-control" formControlName="Plan" style="margin-bottom: 20px">
+              <div *ngIf="SOAPControl.Plan.touched && SOAPControl.Plan.errors">
+                <small style="color: red"> Image Required </small>
+              </div>
+              <button type="submit" class="btn btn-primary btn-rounded ">
+                Upload
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

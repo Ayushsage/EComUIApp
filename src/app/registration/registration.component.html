@@ -1,0 +1,194 @@
+<div *ngIf="loader" class="cssload-container">
+  <div class="cssload-speeding-wheel"></div>
+</div>
+<div class="wrapper">
+  <!-- <div style="margin: auto">
+    <img
+      src="https://thumbs.dreamstime.com/b/online-registration-sign-up-concept-young-woman-signing-login-to-account-smartphone-app-user-interface-secure-password-194944775.jpg"
+      id="icon"
+      alt="User Icon"
+      style="width: 300px"
+    />
+  </div> -->
+
+  <form [formGroup]="Registration" (ngSubmit)="OnSubmit()" class="form-right" novalidate>
+    <h2 style="color: #200c0cc2; text-align: center; font-family: sans-serif">Registration Form</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <label>First Name</label>
+        <input placeholder="First Name" [class.is-invalid]="f['First_Name'].invalid && f['First_Name'].touched"
+          type="text" name="First_Name" id="First_Name" formControlName="First_Name" class="input-field" />
+        <div style="color: red" *ngIf="f['First_Name'].invalid && f['First_Name'].touched">
+          <div *ngIf="f['First_Name'].errors && f['First_Name'].errors['required']">
+            First Name required
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label>Last Name</label>
+        <input placeholder="Last Name" type="text" name="Last_Name" id="Last_Name" class="input-field"
+          formControlName="Last_Name" />
+        <div style="color: red" *ngIf="f['Last_Name'].invalid && f['Last_Name'].touched">
+          <div *ngIf="f['Last_Name'].errors && f['Last_Name'].errors['required']">
+            Last Name required
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label>Your Email</label>
+          <input placeholder="Your Email" type="email" class="input-field" name="email" formControlName="Email" />
+          <div style="color: red" *ngIf="f['Email'].invalid && f['Email'].touched">
+            <div *ngIf="f['Email'].errors && f['Email'].errors['required']">
+              Email is required
+            </div>
+            <div *ngIf="f['Email'].errors && f['Email'].errors['pattern']">
+              Please Enter Valid email address
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>User Type</label>
+
+          <select formControlName="User_Type" required class="input-field" style="width: 80%; padding: 5px">
+            <option value="">Choose User type</option>
+            <option value="1">Admin</option>
+            <option value="2">Customer</option>
+          </select>
+          <div style="color: red" *ngIf="f['User_Type'].invalid && f['User_Type'].touched">
+            <div *ngIf="f['User_Type'].errors && f['User_Type'].errors['required']">
+              User type required
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label>Date Of Birth</label>
+        <input placeholder="Date of Birth" formControlName="DateOfbirth" type="text" onfocus="(this.type='date')"
+          onblur="(this.type='text')" max="2023-04-20" class="input-field" name="email" />
+        <div style="color: red" *ngIf="f['DateOfbirth'].invalid && f['DateOfbirth'].touched">
+          <div *ngIf="f['DateOfbirth'].errors && f['DateOfbirth'].errors['required']">
+            DOB is required
+          </div>
+          <div *ngIf="f['DateOfbirth'].errors && f['DateOfbirth'].errors['pattern']"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label>
+          Phone Number : <br />
+          <input type="text" class="input-field" maxlength="13"
+            oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*?)\..*/g, '$1');"
+            formControlName="Mobile_Number" placeholder="Phone Number" />
+        </label>
+        <div style="color: red" *ngIf="(f.Mobile_Number.touched || submited) && f.Mobile_Number.errors">
+          Phone Number is required
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label>Address</label>
+
+        <textarea placeholder="Address" formControlName="Address" class="input-field  p-1" style="width: 80%" cols="50"
+          rows="1"></textarea>
+        <div style="color: red" *ngIf="f['Address'].invalid && f['Address'].touched">
+          <div *ngIf="f['Address'].errors && f['Address'].errors['required']">
+            Address is required
+          </div>
+          <div *ngIf="f['Address'].errors && f['Address'].errors['maxlength']">
+            Max Length 20
+          </div>
+          <div *ngIf="f['Address'].errors && f['Address'].errors['minlength']">
+            Min Length 3
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label>
+          Zip-code <br />
+          <input type="text" class="input-field" maxlength="6"
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+            formControlName="Zipcode" placeholder="Zip-code" />
+        </label>
+        <div style="color: red" *ngIf="(f.Zipcode.touched || submited) && f.Zipcode.errors">
+          Zip-code is required
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- <div class="col-md-6 " >
+       
+            <label >Country</label>
+            <mbsc-select  [data]="myData"  [itemHeight]="40"  [filter]="true" inputStyle="box"   placeholder="Please select..."></mbsc-select>
+            <ng-template #ite
+            mTemp let-item >
+                <div class="md-country-picker-item">
+                    <img class="md-country-picker-flag" [src]="'https://img.mobiscroll.com/demos/flags/' + item.data.value + '.png'" />
+                    {{item.display}}
+                </div>
+            </ng-template>
+       
+        
+      
+      </div> -->
+      <div class="col-md-6">
+        <label>Country</label>
+
+
+
+        <select (change)="Getstate($event.target)" id="country" name="country" class="input-field"
+          formControlName="Country">
+          <option value=""> Choose Country </option>
+
+          <option *ngFor="let c of country" value="{{ c.id }}">{{ c.countries }}</option>
+        </select>
+        <div style="color: red" *ngIf="f['Country'].invalid && f['Country'].touched">
+          <div *ngIf="f['Country'].errors && f['Country'].errors['required']">
+            Country is required
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label>State</label>
+        <select id="state" name="state" class="input-field" formControlName="state">
+          <option value="">Choose State </option>
+          <option *ngFor="let s of states" value="{{ s.countryId }}">{{ s.state }}</option>
+        </select>
+        <div style="color: red" *ngIf="f['state'].invalid && f['state'].touched">
+          <div *ngIf="f['state'].errors && f['state'].errors['required']">
+            State required
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+    <div class="row">
+
+      <div class="col-md-6 ">
+        <label>Profile picture</label><input formControlName="profile_Path" (change)="uploadProfile($event)" type="file"
+          accept="image/png, image/gif, image/jpeg" />
+      </div>
+      <div style="color: red" *ngIf="f['profile_Path'].invalid && f['profile_Path'].touched">
+        <div *ngIf="f['profile_Path'].errors && f['profile_Path'].errors['required']">
+          Image is required
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="form-field" style="text-align: center;">
+      <button type="submit" class="btn btn-primary" style="padding: 8px; margin: 8px">
+        Register</button>
+      &nbsp;
+      <button routerLink="/login" class="btn btn-secondary" style="padding: 8px; margin: 8px">
+        Login
+      </button>
+    </div>
+  </form>
+
+</div>

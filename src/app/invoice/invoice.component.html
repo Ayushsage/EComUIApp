@@ -1,0 +1,32 @@
+<h3>Invoice details</h3>
+
+
+<div class="container">
+    <table class="table">
+    <tr>
+        <th>Invoice Id</th>
+        <th>InvoiceDate</th>
+        <th>ProductName</th>
+        <th>SaleQuantity</th>
+        <th>SallingPrice</th>
+    </tr>
+    <tr *ngFor="let item of InvoiceData">
+        <td>{{item.InvoiceId}}</td>
+        <td>{{item.InvoiceDate.substring(0,10)}}</td>
+        <td>{{item.ProductName}}</td>
+        <td>{{item.SaleQuantity}}</td>
+        <td>{{item.SallingPrice|currency:'INR'}}</td>
+    </tr>
+
+</table>
+<br><br>
+   <div>
+    <h3>Total Amount: <span>{{InvoiceData[0].SubTotal|currency:'INR'}}</span><br><br></h3>
+      <h3>Delivery Address</h3>
+     <p>{{InvoiceData[0].DeliveryAddress}}, {{InvoiceData[0].State}}, {{InvoiceData[0].Country}}, {{InvoiceData[0].DelivaryZipcode}}</p>
+
+
+    </div>
+</div>
+
+<button (click)="printScreen()" class="btn btn-primary">Print</button>
